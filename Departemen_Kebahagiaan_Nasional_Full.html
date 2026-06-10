@@ -6,119 +6,210 @@
 
 <title>Departemen Kebahagiaan Nasional</title>
 
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 font-family:Arial,sans-serif;
-background:#ffe8f0;
-display:flex;
-justify-content:center;
-align-items:center;
+background:linear-gradient(180deg,#ffd6e7,#ffeef6);
 min-height:100vh;
-padding:20px;
+overflow-x:hidden;
+}
+
+.bunga{
+position:fixed;
+font-size:30px;
+animation:jatuh linear infinite;
+opacity:.8;
+pointer-events:none;
+}
+
+@keyframes jatuh{
+0%{
+transform:translateY(-100px) rotate(0deg);
+}
+100%{
+transform:translateY(120vh) rotate(360deg);
+}
 }
 
 .container{
-width:100%;
-max-width:900px;
+width:95%;
+max-width:1000px;
+margin:auto;
+padding:30px 15px;
 }
 
 .card{
 background:white;
-padding:30px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,.15);
+border-radius:35px;
+padding:35px;
+box-shadow:0 15px 40px rgba(0,0,0,.15);
 text-align:center;
+margin-top:30px;
+}
+
+.logo{
+font-size:70px;
+margin-bottom:10px;
 }
 
 h1{
+font-size:45px;
 color:#ff4f93;
+margin-bottom:15px;
+}
+
+.sub{
+font-size:22px;
+margin-bottom:25px;
+color:#555;
 }
 
 input{
-width:80%;
-padding:15px;
-border-radius:15px;
-border:2px solid #ffd1e3;
-font-size:16px;
+width:85%;
+padding:18px;
+border-radius:20px;
+border:3px solid #ffd2e5;
+font-size:18px;
+outline:none;
 }
 
 button{
-margin-top:15px;
-padding:12px 25px;
+margin-top:25px;
+padding:18px 40px;
 border:none;
-border-radius:15px;
+border-radius:25px;
 background:#ff5ca8;
 color:white;
-font-size:16px;
+font-size:20px;
+font-weight:bold;
 cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
 }
 
 #sertifikat{
 display:none;
-background:#fffafc;
-border:12px double #ff93c2;
+margin-top:25px;
+background:#fffdfd;
+border-radius:30px;
+padding:30px;
+position:relative;
+overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+.sertifikat-border{
+border:10px double #ff9ac7;
 border-radius:25px;
 padding:25px;
-margin-top:20px;
-text-align:center;
+background:#fffdfd;
+}
+
+.ribbon{
+background:#ff5ca8;
+color:white;
+display:inline-block;
+padding:10px 25px;
+border-radius:20px;
+font-weight:bold;
+margin-top:10px;
 }
 
 .judul{
-font-size:42px;
-font-weight:bold;
-color:#ff4f93;
-}
-
-.nama{
-font-size:45px;
-color:#ff5ca8;
-font-family:cursive;
-margin:20px 0;
-}
-
-.badge{
-display:inline-block;
-background:#ff5ca8;
-color:white;
-padding:10px 20px;
-border-radius:20px;
-margin:15px;
-}
-
-.valid{
-font-size:28px;
+font-size:60px;
 font-weight:bold;
 color:#ff4f93;
 margin-top:15px;
+font-family:Georgia,serif;
 }
 
-.hadiah{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
+.nama{
+font-size:55px;
+color:#ff5ca8;
+font-family:cursive;
+margin:25px 0;
+font-weight:bold;
+}
+
+.valid{
+font-size:42px;
+color:#ff4f93;
+font-weight:bold;
 margin-top:20px;
 }
 
-.item{
-background:#fff0f6;
-padding:12px;
-border-radius:15px;
+.deskripsi{
+font-size:24px;
+line-height:1.6;
+margin-top:20px;
 }
 
-.footer{
-margin-top:25px;
+.reward-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+margin-top:30px;
+}
+
+.reward{
+background:#fff1f7;
+padding:15px;
+border-radius:20px;
+font-size:18px;
+font-weight:bold;
+}
+
+.reward span{
+display:block;
+font-size:40px;
+margin-bottom:10px;
+}
+
+.ttd{
+margin-top:35px;
+font-size:22px;
+}
+
+.nama-ttd{
+font-size:40px;
+color:#ff4f93;
+font-family:cursive;
+font-weight:bold;
 }
 
 .stempel{
-font-size:40px;
-color:#ff4f93;
-transform:rotate(-10deg);
+position:absolute;
+right:20px;
+bottom:20px;
+font-size:120px;
+opacity:.18;
+transform:rotate(-20deg);
+}
+
+.download{
+background:#ff8fbf;
+margin-left:10px;
+}
+
+.medali{
+font-size:80px;
+margin-bottom:10px;
+}
+
+.keterangan{
 margin-top:20px;
-font-weight:bold;
+font-size:20px;
+line-height:1.7;
 }
 
 </style>
@@ -126,108 +217,131 @@ font-weight:bold;
 
 <body>
 
+<div id="hujan"></div>
+
 <div class="container">
 
-<div class="card" id="form">
+<div class="card" id="formBox">
 
-<h1>🌷 Departemen Kebahagiaan Nasional 🌷</h1>
+<div class="logo">🧸🌷💖</div>
 
-<p>Masukkan nama untuk pemeriksaan kebahagiaan</p>
+<h1>Departemen Kebahagiaan Nasional</h1>
+
+<p class="sub">
+Pemeriksaan resmi tingkat kebahagiaan warga hari ini
+</p>
 
 <input
 type="text"
 id="nama"
-placeholder="Nama lengkap">
+placeholder="Masukkan nama lengkap">
 
 <br>
 
 <button onclick="buatSertifikat()">
-💖 Mulai Pemeriksaan
+💝 Mulai Pemeriksaan
 </button>
 
+</div><div id="sertifikat">
+
+<div class="sertifikat-border">
+
+<div class="medali">
+🏆🧸🏆
 </div>
 
-<div id="sertifikat">
-
-<div style="font-size:70px;">
-🏆😊🏆
-</div>
-
-<div style="font-weight:bold;">
+<h3>
 DEPARTEMEN KEBAHAGIAAN NASIONAL
-</div>
+</h3>
 
 <div class="judul">
-🏅 SERTIFIKAT SENYUM 🏅
+SERTIFIKAT SENYUM
 </div>
 
-<div style="font-size:90px;">
-🧸
-</div>
-
-<div class="badge">
+<div class="ribbon">
 💌 DIBERIKAN KEPADA 💌
 </div>
 
-<div class="nama" id="hasilNama"></div>
+<div class="nama" id="hasilNama">
+Nama
+</div>
 
-<div style="
-background:#fff0f6;
-padding:15px;
-border-radius:20px;
-margin:20px auto;
-max-width:600px;">
+<div class="deskripsi">
 
-Dengan ini Departemen Kebahagiaan Nasional menyatakan bahwa pemilik nama di atas telah berhasil melewati pemeriksaan kebahagiaan dan dinyatakan layak menerima penghargaan senyum hari ini.
+Dengan ini Departemen Kebahagiaan Nasional
+menyatakan bahwa pemilik nama di atas telah
+berhasil melewati pemeriksaan kebahagiaan
+dan dinyatakan memiliki senyum yang valid
+serta energi positif yang luar biasa.
 
 </div>
 
 <div class="valid">
-✅ VERIFIKASI SENYUM : VALID
+✅ SENYUM TERVERIFIKASI
 </div>
 
-<div class="hadiah">
+<div class="keterangan">
 
-<div class="item">
-👑<br>Gelar Kehormatan
-</div>
+🌷 Tingkat kebahagiaan hari ini:
+<b id="skorBahagia">99%</b>
 
-<div class="item">
-💖<br>+100 Poin Kebahagiaan
-</div>
+<br><br>
 
-<div class="item">
-🌈<br>Bonus Keberuntungan
-</div>
-
-<div class="item">
-☕<br>Energi Positif
-</div>
-
-<div class="item">
-🧸<br>Kupon Peluk Virtual
-</div>
-
-<div class="item">
-🌷<br>Aura Baik Maksimal
-</div>
+🧸 Status:
+<b>Duta Kebahagiaan Nasional</b>
 
 </div>
 
-<div class="footer">
+<div class="reward-grid">
 
-<p>Disahkan oleh:</p>
+<div class="reward">
+<span>👑</span>
+Gelar Kehormatan
+</div>
 
-<h2 style="color:#ff4f93;">
+<div class="reward">
+<span>💖</span>
+100 Poin Bahagia
+</div>
+
+<div class="reward">
+<span>🌈</span>
+Bonus Keberuntungan
+</div>
+
+<div class="reward">
+<span>☕</span>
+Energi Positif
+</div>
+
+<div class="reward">
+<span>🧸</span>
+Peluk Virtual
+</div>
+
+<div class="reward">
+<span>🌷</span>
+Aura Baik Maksimal
+</div>
+
+</div>
+
+<div class="ttd">
+
+<p>Disahkan oleh</p>
+
+<div class="nama-ttd">
 isca ♡
-</h2>
+</div>
 
-<p>Petugas Senyum Utama</p>
+<p>
+Petugas Senyum Utama
+</p>
 
 </div>
 
 <div class="stempel">
-💮 VALID 💮
+💮
 </div>
 
 <button onclick="downloadSertifikat()">
@@ -236,40 +350,82 @@ isca ♡
 
 </div>
 
-</div>
+</div><script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <script>
+
+for(let i=0;i<25;i++){
+
+let bunga=document.createElement("div");
+
+bunga.className="bunga";
+
+bunga.innerHTML=["🌷","💖","🌸","🎀"][Math.floor(Math.random()*4)];
+
+bunga.style.left=Math.random()*100+"vw";
+
+bunga.style.animationDuration=
+(5+Math.random()*8)+"s";
+
+bunga.style.fontSize=
+(20+Math.random()*25)+"px";
+
+document.body.appendChild(bunga);
+
+}
 
 function buatSertifikat(){
 
 let nama=document.getElementById("nama").value;
 
-if(nama==""){
+if(nama.trim()==""){
+
 alert("Isi nama dulu ya 🌷");
+
 return;
+
 }
 
 alert("🔍 Memindai senyum...");
 alert("🌈 Mengukur energi positif...");
 alert("💖 Menghitung tingkat kebahagiaan...");
 
-document.getElementById("hasilNama").innerHTML=nama;
+let skor=
+Math.floor(Math.random()*16)+85;
 
-document.getElementById("form").style.display="none";
-document.getElementById("sertifikat").style.display="block";
+document.getElementById("skorBahagia")
+.innerHTML=skor+"%";
+
+document.getElementById("hasilNama")
+.innerHTML=nama;
+
+document.getElementById("formBox")
+.style.display="none";
+
+document.getElementById("sertifikat")
+.style.display="block";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 function downloadSertifikat(){
 
-html2canvas(document.getElementById("sertifikat"))
-.then(function(canvas){
+html2canvas(
+document.getElementById("sertifikat")
+).then(function(canvas){
 
-let link=document.createElement("a");
+let link=
+document.createElement("a");
 
-link.download="Sertifikat_Senyum.png";
+link.download=
+"Sertifikat_Kebahagiaan.png";
 
-link.href=canvas.toDataURL();
+link.href=
+canvas.toDataURL("image/png");
 
 link.click();
 
