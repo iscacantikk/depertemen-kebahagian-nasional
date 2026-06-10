@@ -1,1 +1,283 @@
-<!DOCTYPE html><html><head><meta charset='utf-8'><title>Departemen Kebahagiaan Nasional</title></head><body><h1>🌷 Departemen Kebahagiaan Nasional 🌷</h1><p>Website tema pemeriksaan kebahagiaan dengan sertifikat di akhir.</p></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Departemen Kebahagiaan Nasional</title>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#ffe8f0;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:900px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+text-align:center;
+}
+
+h1{
+color:#ff4f93;
+}
+
+input{
+width:80%;
+padding:15px;
+border-radius:15px;
+border:2px solid #ffd1e3;
+font-size:16px;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:15px;
+background:#ff5ca8;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+#sertifikat{
+display:none;
+background:#fffafc;
+border:12px double #ff93c2;
+border-radius:25px;
+padding:25px;
+margin-top:20px;
+text-align:center;
+}
+
+.judul{
+font-size:42px;
+font-weight:bold;
+color:#ff4f93;
+}
+
+.nama{
+font-size:45px;
+color:#ff5ca8;
+font-family:cursive;
+margin:20px 0;
+}
+
+.badge{
+display:inline-block;
+background:#ff5ca8;
+color:white;
+padding:10px 20px;
+border-radius:20px;
+margin:15px;
+}
+
+.valid{
+font-size:28px;
+font-weight:bold;
+color:#ff4f93;
+margin-top:15px;
+}
+
+.hadiah{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.item{
+background:#fff0f6;
+padding:12px;
+border-radius:15px;
+}
+
+.footer{
+margin-top:25px;
+}
+
+.stempel{
+font-size:40px;
+color:#ff4f93;
+transform:rotate(-10deg);
+margin-top:20px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card" id="form">
+
+<h1>🌷 Departemen Kebahagiaan Nasional 🌷</h1>
+
+<p>Masukkan nama untuk pemeriksaan kebahagiaan</p>
+
+<input
+type="text"
+id="nama"
+placeholder="Nama lengkap">
+
+<br>
+
+<button onclick="buatSertifikat()">
+💖 Mulai Pemeriksaan
+</button>
+
+</div>
+
+<div id="sertifikat">
+
+<div style="font-size:70px;">
+🏆😊🏆
+</div>
+
+<div style="font-weight:bold;">
+DEPARTEMEN KEBAHAGIAAN NASIONAL
+</div>
+
+<div class="judul">
+🏅 SERTIFIKAT SENYUM 🏅
+</div>
+
+<div style="font-size:90px;">
+🧸
+</div>
+
+<div class="badge">
+💌 DIBERIKAN KEPADA 💌
+</div>
+
+<div class="nama" id="hasilNama"></div>
+
+<div style="
+background:#fff0f6;
+padding:15px;
+border-radius:20px;
+margin:20px auto;
+max-width:600px;">
+
+Dengan ini Departemen Kebahagiaan Nasional menyatakan bahwa pemilik nama di atas telah berhasil melewati pemeriksaan kebahagiaan dan dinyatakan layak menerima penghargaan senyum hari ini.
+
+</div>
+
+<div class="valid">
+✅ VERIFIKASI SENYUM : VALID
+</div>
+
+<div class="hadiah">
+
+<div class="item">
+👑<br>Gelar Kehormatan
+</div>
+
+<div class="item">
+💖<br>+100 Poin Kebahagiaan
+</div>
+
+<div class="item">
+🌈<br>Bonus Keberuntungan
+</div>
+
+<div class="item">
+☕<br>Energi Positif
+</div>
+
+<div class="item">
+🧸<br>Kupon Peluk Virtual
+</div>
+
+<div class="item">
+🌷<br>Aura Baik Maksimal
+</div>
+
+</div>
+
+<div class="footer">
+
+<p>Disahkan oleh:</p>
+
+<h2 style="color:#ff4f93;">
+isca ♡
+</h2>
+
+<p>Petugas Senyum Utama</p>
+
+</div>
+
+<div class="stempel">
+💮 VALID 💮
+</div>
+
+<button onclick="downloadSertifikat()">
+📸 Download Sertifikat
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function buatSertifikat(){
+
+let nama=document.getElementById("nama").value;
+
+if(nama==""){
+alert("Isi nama dulu ya 🌷");
+return;
+}
+
+alert("🔍 Memindai senyum...");
+alert("🌈 Mengukur energi positif...");
+alert("💖 Menghitung tingkat kebahagiaan...");
+
+document.getElementById("hasilNama").innerHTML=nama;
+
+document.getElementById("form").style.display="none";
+document.getElementById("sertifikat").style.display="block";
+
+}
+
+function downloadSertifikat(){
+
+html2canvas(document.getElementById("sertifikat"))
+.then(function(canvas){
+
+let link=document.createElement("a");
+
+link.download="Sertifikat_Senyum.png";
+
+link.href=canvas.toDataURL();
+
+link.click();
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
